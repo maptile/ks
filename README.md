@@ -2,15 +2,21 @@
 
 ks is short for Kill Server which means if you use it without enough care, you may kill your server.
 
-# Usage
+# Installation
 
-You can append the following scripts to ~/.profile, it let you run shell commands from ks dir.
+`git clone https://github.com/maptile/ks.git ~/.ks`
+
+Append the following scripts to ~/.profile, it let you run shell commands from ks dir.
 
 `
 if [ -d "$HOME/.ks/" ] ; then
     PATH="$HOME/.ks:$PATH"
 fi
 `
+
+Logout and login again, so the system can use the new .profile file.
+
+# Usage
 
 ## Do a full system upgrade
 
