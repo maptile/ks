@@ -1,8 +1,35 @@
 #!/usr/bin/env bash
 
+printcountdown(){
+    echo "$1 after $2 seconds"
+
+    for ((i = $2 ; i > 0 ; i--)); do
+        echo "$i"
+        sleep 1
+    done
+}
+
+printmessage(){
+    echo ''
+    echo ''
+    echo '================================================='
+    echo "$1"
+    echo '================================================='
+}
+
 fullupgrade(){
-    echo 'Full system upgrade'
-    sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+    printcountdown 'Will do a full system upgrade' 5
+
+    printmessage 'Update list of available packages'
+    sudo apt update
+
+    printmessage 'Installing all upgradable packages'
+    sudo apt upgrade -y
+
+    printmessage 'Remove automatically all unused packages'
+    sudo apt autoremove -y
+
+    printmessage 'Refreshing snaps'
     sudo snap refresh
 }
 
@@ -11,11 +38,10 @@ dockerimagepull(){
 
     if [ -n "$dockerps" ]; then
         echo 'please consider to remove all running containers'
-        echo 'will wait for 5 seconds and continue'
-        sleep 5
+        printcountdown 'will continue' 5
     fi
 
-    echo 'Pulling new images'
+    printmessage 'Pulling new images'
 
     local images=`docker images | tail -n +2 | awk '{print $1 ":" $2}'`
 
@@ -26,7 +52,7 @@ dockerimagepull(){
         docker pull $i
     done
 
-    echo 'Remove untagged images'
+    printmessage 'Remove untagged images'
     docker image prune -f
 }
 
