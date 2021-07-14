@@ -18,7 +18,10 @@ printmessage(){
 }
 
 fullupgrade(){
-    printcountdown 'Will do a full system upgrade' 5
+    echo 'Will do a full system upgrade, please type sudo password'
+    sudo uname -a > /dev/null
+
+    printcountdown 'Do after' 5
 
     printmessage 'Update list of available packages'
     sudo apt update
