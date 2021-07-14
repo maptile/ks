@@ -80,6 +80,17 @@ dockerimageload(){
     done
 }
 
+printhelp(){
+    echo "
+Usage: ks [commands]
+
+Available commands:
+  u        Full system upgrade. Combines: apt update upgrade autoremove, snap refresh
+  dip      Pull all docker images with the tag that existing on current system
+  dis      Save all docker images to disk
+  dil      Load all image files to docker"
+}
+
 case $1 in
     u )
         fullupgrade;;
@@ -89,5 +100,7 @@ case $1 in
 	dockerimagesave;;
     dil )
 	dockerimageload;;
+    *   )
+	printhelp;;
 esac
 
