@@ -115,14 +115,16 @@ case $1 in
     dpsa )
         docker ps -a;;
     drm )
-        docker stop $3
-        docker rm $3;;
+        docker stop $2
+        docker rm $2;;
     dcu )
         docker compose up -d;;
     dcd )
         docker compose down;;
+    dcr )
+        docker compose restart;;
     dce )
-        docker compose exec -it --privileged $3 $4;;
+        docker compose exec -it --privileged $2 $3;;
     *  )
 	printhelp;;
 esac
