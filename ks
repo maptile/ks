@@ -96,7 +96,7 @@ Available commands:
   dpsa    docker ps -a
   drm     docker stop NAME; docker rm NAME
   dcu     docker compose up -d
-  dcd     docker compose down
+  dcd     docker compose down [NAME]
   dcl     docker compose logs -f NAME
   dcr     docker compose restart [NAME]
   dce     docker compose exec -it --privileged NAME COMMAND
@@ -122,7 +122,7 @@ case $1 in
     dcu )
         docker compose up -d;;
     dcd )
-        docker compose down;;
+        docker compose down $2;;
     dcl )
         docker compose logs -f $2;;
     dcr )
