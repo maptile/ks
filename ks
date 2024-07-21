@@ -97,6 +97,8 @@ Available commands:
   drm     docker stop NAME; docker rm NAME
   dcu     docker compose up -d
   dcd     docker compose down
+  dcl     docker compose logs -f NAME
+  dcr     docker compose restart [NAME]
   dce     docker compose exec -it --privileged NAME COMMAND
 "
 }
@@ -121,8 +123,10 @@ case $1 in
         docker compose up -d;;
     dcd )
         docker compose down;;
+    dcl )
+        docker compose logs -f $2;;
     dcr )
-        docker compose restart;;
+        docker compose restart $2;;
     dce )
         docker compose exec -it --privileged $2 $3;;
     *  )
